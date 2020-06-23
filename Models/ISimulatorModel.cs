@@ -17,6 +17,7 @@ namespace FlightSimulatorApp.Model
         void Disconnect();
 
         string Error { set; get; }
+        // Set methods.
         void SetAileron(string s);
         void SetElevator(string s);
         void SetRudder(string s);

@@ -27,6 +27,7 @@ namespace FlightMobileApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Initial the main objects of the server
             services.AddControllers();
             MySimulatorModel = new MySimulatorModel(Configuration);
             services.AddSingleton<ISimulatorModel>(MySimulatorModel);
