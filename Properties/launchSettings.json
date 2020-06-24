@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "FlightMobileApp": {
+    "FlightMobileServer": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

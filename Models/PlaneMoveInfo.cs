@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace FlightMobileApp.Models
+namespace FlightMobileWeb.Models
 {
     /// <summary>
     /// Json object, hold all the parameters of the joystick that tha client send

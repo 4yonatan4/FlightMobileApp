@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace FlightMobileApp.Controllers
+namespace FlightMobileWeb.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     [ApiController]
     public class ScreenshotController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace FlightMobileApp.Controllers
             IP = config.GetConnectionString("IP");
         }
 
-        // GET: api/Screenshot
+        // GET: /Screenshot
         [HttpGet]
         public async Task<IActionResult> Get()
         {

@@ -5,14 +5,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using FlightMobileApp.Models;
+using FlightMobileWeb.Models;
 using FlightSimulatorApp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Configuration;
 
-namespace FlightMobileApp.Controllers
+namespace FlightMobileWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
