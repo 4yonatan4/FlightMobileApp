@@ -37,7 +37,7 @@ namespace FlightSimulatorApp.Model
             {
                 if (!telnetClient.isConnect)
                 {
-                    mutex = new Mutex();
+                    //mutex = new Mutex();
                     telnetClient.Connect(ip, port);
                 }
             }
@@ -46,29 +46,6 @@ namespace FlightSimulatorApp.Model
                 Error = e.Message + "\n";
             }
         }
-
-        // Disconnect from the server.
-        public void Disconnect()
-        {
-            try
-            {
-                telnetClient.Disconnect();
-            }
-            catch (Exception e)
-            {
-                Error = e.Message + "\n";
-            }
-        }
-
-
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }
-        }
-
         
         public void SetThrottle(string s)
         {
@@ -151,14 +128,33 @@ namespace FlightSimulatorApp.Model
                 case "Rudder":
                     var = "/controls/flight/rudder";
                     break;
+                default:
+                    Console.WriteLine("json file invalid");
+                    return;
             }
             mutex.WaitOne();
             telnetClient.Write("get " + var + "\n");
             string current = telnetClient.Read();
-            if (source != current)
+            double d1, d2;
+            //double d1 = Double.Parse(source);
+            //double d2 = Double.Parse(current);
+            if (!Double.TryParse(source, out d1))
             {
+                Console.WriteLine("json file invalid");
+                return;
+            }
+            if (!Double.TryParse(current, out d2))
+            {
+                Console.WriteLine("get invalid value from the simulator");
+                return;
+            }
+            string s1 = String.Format("{0:0.00}", d1);
+            string s2 = String.Format("{0:0.00}", d2);
+            if (!s1.Equals(s2))
+            {
+                Console.WriteLine("need to be " + source + " but get: " + current);
                 // Error
-                Console.WriteLine("error post" + variable);
+                Console.WriteLine("error post " + variable);
             }
             mutex.ReleaseMutex();
         }
@@ -170,11 +166,9 @@ namespace FlightSimulatorApp.Model
             get { return this.error; }
             set
             {
-                this.error += DateTime.Now.ToString("H:mm:ss : ") + value;
-                NotifyPropertyChanged("Error");
+                
             }
         }
 
-        
     }
 }

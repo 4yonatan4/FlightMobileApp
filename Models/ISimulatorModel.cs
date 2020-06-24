@@ -14,7 +14,6 @@ namespace FlightSimulatorApp.Model
     {
         // Telnet Clinet methods.
         void Connect(string ip, string port);
-        void Disconnect();
 
         string Error { set; get; }
         // Set methods.
